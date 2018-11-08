@@ -2,6 +2,4 @@
 
 Group members:
 
-Ada Lovelace adalovelace@csu.fullerton.edu
-
-Charles Babbage charlesbab@csu.fullerton.edu
+Antonio Lopez : antonio_lopez@csu.fullerton.edu
