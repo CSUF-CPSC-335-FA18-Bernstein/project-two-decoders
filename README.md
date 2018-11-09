@@ -4,3 +4,4 @@ Group members:
 
 Antonio Lopez : antonio_lopez@csu.fullerton.edu
 David Toledo : davidtv2008@csu.fullerton.edu
+Adam Weesner - aweesner@csu.fullerton.edu
