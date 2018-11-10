@@ -24,25 +24,56 @@ using namespace std;
 // Randomize the order of all items in the list
 //-----------------------------------------------------------------------------
 void randomize_list(string_vector & strings) {
-	//Don't know if size_t random value goes inside or outside the for-loop
-	//In Berstein's powerpoint slide, it shows it inside, but wouldn't that
-	//loop forever?
-
+	
 	std::srand(std::time(nullptr));		//use current time as seed for random generator
-	//size_t random_value = std::rand();
-	//std::cout << "Random value on [0 " << RAND_MAX << "]: " << random_value << '\n';
+	
+	for (size_t i = 0; i < strings.size() - 1; i++) {
+		
+    //limit our random number to be less than the size of the number of elements "words"
+    size_t random_value = std::rand() % strings.size() - 1;
+    
+    //only swap when the random_value is not the same as the i index incrementor
+    if ( random_value != i){
+      
+      std::swap(strings[i], strings[random_value]);
 
-	for (size_t i = 0; i < strings.size(); i++) {
-		size_t random_value = std::rand();
-		std::cout << "Random value on [0 " << RAND_MAX << "]: " << random_value << '\n';
-		std::swap(strings[i], strings[random_value]);
+    }
 	}
+
   return;
 }
 
 //-----------------------------------------------------------------------------
 void merge(string_vector & strings, size_t start, size_t mid, size_t end) {
-  // TODO: implement this function, then delete this comment
+  
+  int i = start;
+  int j = mid + 1;
+  int k = 0;
+  int temporary[end - start + 1];
+
+  //merge the 2 parts and place in temporary
+  while ( i <= mid && j <= end ){
+
+    if ( strings[i] < strings[j] ){
+
+      //temporary[k] = strings[i];
+      k++;
+      i++;
+
+    }
+    else{
+
+      //temporary[k] = strings[j];
+      k++;
+      j++;
+
+    }
+
+  }
+
+  
+
+
 
   return;
 }
@@ -55,7 +86,45 @@ void merge(string_vector & strings, size_t start, size_t mid, size_t end) {
 //-----------------------------------------------------------------------------
 void mergesort(string_vector & strings, size_t start, size_t end) {
   // TODO: implement this function, then delete this comment
-  return;
+
+  if (strings.size() == 1) {
+    return;
+  }
+  else{
+
+    //allocate memory for both parts, for each recursion call
+    string_vector* b = new string_vector();
+    string_vector* c = new string_vector();
+
+    cout <<"first part from " << start << " to " <<  end / 2 << endl;
+    cout <<"2nd part from " << end / 2 + 1 << " to " <<  end << endl;
+
+    for ( int i = 0; i < end / 2 + 1; i++){
+
+      //copy first part of words into b vector
+      b->push_back(strings[i]);
+
+    }
+
+    for ( int i = end / 2 + 1; i < end + 1; i++){
+
+      //copy 2nd part of the words into c vector
+      c->push_back(strings[i]);
+   
+    }
+
+    cout << b->at(0) << endl;
+    cout << c->at(0) << endl;    
+
+    mergesort(*b,0,b->size()-1);
+    mergesort(*c,0,c->size()-1);
+
+    cout <<"Begin the merge process from here on" << endl;
+    //need to implement merge
+
+    return;
+    
+  }
 }
 
 //-----------------------------------------------------------------------------
@@ -102,13 +171,14 @@ void quicksort(string_vector & strings, int start, int end) {
 //-----------------------------------------------------------------------------
 bool load_words(string_vector& words, const std::string& path) 
 {
-  std::cout << "Loading words from [" << path << "]" << std::endl;		//doesn't work w/o #include<iostream>
+  //std::cout << "Loading words from [" << path << "]" << std::endl;		//doesn't work w/o #include<iostream>
   words.clear();
   std::ifstream ifs(path.c_str());
   if (!ifs.is_open() || !ifs.good()) {
-    cout << "Failed to open [" << path << "]" << std::endl;
+    //cout << "Failed to open [" << path << "]" << std::endl;
     return false;
   }
+
   int countWordsLoaded = 0;
   while (!ifs.eof()) {
     std::string lineBuffer;
@@ -119,9 +189,8 @@ bool load_words(string_vector& words, const std::string& path)
     words.push_back(lineBuffer);
     countWordsLoaded++;
   }
-  std::cout << "Loaded " << countWordsLoaded << " words from [" << path << "]" << std::endl;;
-  
-  //randomize_list(words);				//output check to see if function works
+  std::cout << "Loaded " << countWordsLoaded << " words from [" << path << "]" << std::endl;
+
   return true;
 }
 

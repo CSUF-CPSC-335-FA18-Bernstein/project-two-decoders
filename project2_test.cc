@@ -17,7 +17,7 @@
 using namespace std;
 
 int main() {
-
+	
   string_vector test0 = {  };
   
   string_vector test1 = { "titans" };
@@ -27,9 +27,8 @@ int main() {
   
   string_vector words_txt;
   bool load_words_ok = load_words(words_txt, "words.txt");
-
+  
   Rubric rubric;
-
   rubric.criterion("mergesort(...)", 3,
 		   [&]() {
              string_vector orig1a = test1;

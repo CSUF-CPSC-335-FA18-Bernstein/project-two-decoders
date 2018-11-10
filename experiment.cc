@@ -7,35 +7,43 @@
 ////
 /////////////////////////////////////////////////////////////////////////////////
 //
-//#include <iostream>
-//
-//#include "project2.hh"
-//#include "timer.hh"
-//
-//using namespace std;
-//
-//int main() {
-//
-//  string_vector all_words;
-//  if ( ! load_words(all_words, "words.txt") ) {
-//    cerr << "error: cannot open \"words.txt\"" << endl;
-//    return 1;
-//  }
-//
-//  int n = 1000;
-//  string_vector n_words(all_words.begin(), all_words.begin() + n);
-//
-//  randomize_list(n_words);
-//
-//  Timer timer;
-//  mergesort(n_words);
-//  double elapsed = timer.elapsed();
-//  cout << "mergesort, "
-//       << "n=" << n << ", "
-//       << "elapsed time = " << elapsed << " seconds" << endl;
-//
-//  return 0;
-//}
-//
-//
-//
+#include <iostream>
+
+#include "project2.hh"
+#include "timer.hh"
+
+using namespace std;
+
+int main() {
+
+  string_vector all_words;
+  if ( ! load_words(all_words, "words.txt") ) {
+    cerr << "error: cannot open \"words.txt\"" << endl;
+    return 1;
+  }
+
+  int n = 7;
+  string_vector n_words(all_words.begin(), all_words.begin() + n);
+
+  randomize_list(n_words);
+
+  Timer timer;
+
+  cout << "words to be sorted " << endl;
+  for (int i = 0; i < n_words.size();i++)
+  {
+    cout << n_words.at(i) << " | ";
+  }
+  cout << endl;
+
+  mergesort(n_words);
+  cout << "return from mergesort " << endl;
+
+  
+  double elapsed = timer.elapsed();
+  cout << "mergesort, "
+       << "n=" << n << ", "
+       << "elapsed time = " << elapsed << " seconds" << endl;
+  
+  return 0;
+}
