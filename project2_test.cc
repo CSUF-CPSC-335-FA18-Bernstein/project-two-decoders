@@ -77,7 +77,8 @@ int main() {
 			 sort(orig8b.begin(), orig8b.end());
 		     TEST_TRUE("true: 8 words", orig8a == orig8b);
 
-			 string_vector n_words(words_txt.begin(), words_txt.begin() + 10000);
+			 //string_vector n_words(words_txt.begin(), words_txt.begin() + 10000);
+			 string_vector n_words(words_txt.begin(), words_txt.begin() + 20);
              string_vector origa = n_words;
 			 quicksort(origa);
              string_vector origb = n_words;

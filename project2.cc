@@ -160,16 +160,16 @@ int hoare_partition(string_vector & strings, int start, int end) {
 // the two parts together using the merge() method.
 //-----------------------------------------------------------------------------
 void quicksort(string_vector & strings, int start, int end) {
-	//needs hoare_partition in order to work
-	//std::string pivot = strings[start];
-	//if (start < end)
-	//{
-	//	int split_point = hoare_partition(strings, start, end);
-	//	quicksort(strings, start, split_point - 1);
-	//	quicksort(strings, split_point + 1, end);
-	//}
+	if (start < end) {
+		int split_point = hoare_partition(strings, start, end);
+		quicksort(strings, start, split_point - 1);
+		quicksort(strings, split_point + 1, end);
+	}
 
-  return;
+	//vector output
+	//for (auto v : strings)
+	//	cout << v << " ";
+	//std::cout << "\n";
 }
 
 
