@@ -17,37 +17,37 @@
 //////    cout << "Elapsed time in seconds: " << elapsed << endl;
 //////
 ///////////////////////////////////////////////////////////////////////////////////
-//
-//#pragma once
-//
-//#include <cassert>
-//#include <chrono>
-//
-//class Timer {
-//  /*
-//private:
-//  typedef std::high_resolution_clock::time_point time;
-//  */
-//public:
-//  // Create a new Timer that is running as soon as it is created.
-//  Timer() {
-//    reset();
-//  }
-//
-//  // Reset the timer.
-//  void reset() {
-//    _start = std::chrono::high_resolution_clock::now();
-//  }
-//
-//  // Return the number of seconds since the timer was created, or the
-//  // last time it was reset.
-//  double elapsed() const {
-//    auto end = std::chrono::high_resolution_clock::now();
-//    assert(end >= _start);
-//    auto time_span = std::chrono::duration_cast<std::chrono::duration<double>>(end - _start);
-//    return time_span.count();
-//  }
-//
-// private:
-//  std::chrono::high_resolution_clock::time_point _start;
-//};
+
+#pragma once
+
+#include <cassert>
+#include <chrono>
+
+class Timer {
+  /*
+private:
+  typedef std::high_resolution_clock::time_point time;
+  */
+public:
+  // Create a new Timer that is running as soon as it is created.
+  Timer() {
+    reset();
+  }
+
+  // Reset the timer.
+  void reset() {
+    _start = std::chrono::high_resolution_clock::now();
+  }
+
+  // Return the number of seconds since the timer was created, or the
+ // last time it was reset.
+  double elapsed() const {
+    auto end = std::chrono::high_resolution_clock::now();
+    assert(end >= _start);
+    auto time_span = std::chrono::duration_cast<std::chrono::duration<double>>(end - _start);
+    return time_span.count();
+  }
+
+ private:
+  std::chrono::high_resolution_clock::time_point _start;
+};

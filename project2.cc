@@ -30,50 +30,64 @@ void randomize_list(string_vector & strings) {
 	for (size_t i = 0; i < strings.size() - 1; i++) {
 		
     //limit our random number to be less than the size of the number of elements "words"
-    size_t random_value = std::rand() % strings.size() - 1;
-    
-    //only swap when the random_value is not the same as the i index incrementor
-    if ( random_value != i){
-      
-      std::swap(strings[i], strings[random_value]);
-
-    }
+    size_t random_value = std::rand() % strings.size();
+    std::swap(strings[i], strings[random_value]);
 	}
 }
 
 //-----------------------------------------------------------------------------
 void merge(string_vector & strings, size_t start, size_t mid, size_t end) {
+
+  //setup our starting, middle point along with a temporary string vector to place
+  //our strings as they are being sorted.
+  int i = start;
+	int j = mid + 1;
+	string_vector temp;
+	
+  if ( strings[mid] <= strings[mid + 1] && mid < end ){
+    
+    return;
+  }
+	
+	while ( i <= mid && j <= end ) {
+		
+    if (strings[i] > strings[j]) {
+			
+      temp.push_back(strings[j]);
+      j++;
+
+		}
+		else {
+			
+      temp.push_back(strings[i]);
+      i++;
+
+		}
+	}
+
+	while (j <= end) {
+		
+    temp.push_back(strings[j]);
+    j++;
+
+	}
+
+  while (i <= mid) {
+
+		temp.push_back(strings[i]);
+    i++;
+
+	}
+
+  //place sorted temp strings back into strings
+	for (int i = 0; i < temp.size(); i++) {
+
+		strings[start + i] = temp[i];
+
+	}
+
+	return;
   
-  //int i = start;
-  //int j = mid + 1;
-  //int k = 0;
-  //int temporary[end - start + 1];
-
-  ////merge the 2 parts and place in temporary
-  //while ( i <= mid && j <= end ){
-
-  //  if ( strings[i] < strings[j] ){
-
-  //    //temporary[k] = strings[i];
-  //    k++;
-  //    i++;
-
-  //  }
-  //  else{
-
-  //    //temporary[k] = strings[j];
-  //    k++;
-  //    j++;
-
-  //  }
-
-  //}
-
-  
-
-
-
-  return;
 }
 
 //-----------------------------------------------------------------------------
@@ -85,45 +99,16 @@ void merge(string_vector & strings, size_t start, size_t mid, size_t end) {
 void mergesort(string_vector & strings, size_t start, size_t end) {
   // TODO: implement this function, then delete this comment
 
-  //if (strings.size() == 1) {
-  //  return;
-  //}
-  //else{
+  
+  if ( end > start ){
 
-  //  //allocate memory for both parts, for each recursion call
-  //  string_vector* b = new string_vector();
-  //  string_vector* c = new string_vector();
+    int middle = ( start + end ) /2;
+    mergesort(strings,start,middle);
+    mergesort(strings,middle + 1,end);
+    merge(strings,start,middle,end);
+  }
 
-  //  cout <<"first part from " << start << " to " <<  end / 2 << endl;
-  //  cout <<"2nd part from " << end / 2 + 1 << " to " <<  end << endl;
-
-  //  for ( int i = 0; i < end / 2 + 1; i++){
-
-  //    //copy first part of words into b vector
-  //    b->push_back(strings[i]);
-
-  //  }
-
-  //  for ( int i = end / 2 + 1; i < end + 1; i++){
-
-  //    //copy 2nd part of the words into c vector
-  //    c->push_back(strings[i]);
-  // 
-  //  }
-
-  //  cout << b->at(0) << endl;
-  //  cout << c->at(0) << endl;    
-
-  //  mergesort(*b,0,b->size()-1);
-  //  mergesort(*c,0,c->size()-1);
-
-  //  cout <<"Begin the merge process from here on" << endl;
-  //  //need to implement merge
-
-  //  return;
-  //  
-  //}
-	return;
+  return;
 }
 
 //-----------------------------------------------------------------------------
