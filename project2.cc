@@ -39,37 +39,35 @@ void randomize_list(string_vector & strings) {
 
     }
 	}
-
-  return;
 }
 
 //-----------------------------------------------------------------------------
 void merge(string_vector & strings, size_t start, size_t mid, size_t end) {
   
-  int i = start;
-  int j = mid + 1;
-  int k = 0;
-  int temporary[end - start + 1];
+  //int i = start;
+  //int j = mid + 1;
+  //int k = 0;
+  //int temporary[end - start + 1];
 
-  //merge the 2 parts and place in temporary
-  while ( i <= mid && j <= end ){
+  ////merge the 2 parts and place in temporary
+  //while ( i <= mid && j <= end ){
 
-    if ( strings[i] < strings[j] ){
+  //  if ( strings[i] < strings[j] ){
 
-      //temporary[k] = strings[i];
-      k++;
-      i++;
+  //    //temporary[k] = strings[i];
+  //    k++;
+  //    i++;
 
-    }
-    else{
+  //  }
+  //  else{
 
-      //temporary[k] = strings[j];
-      k++;
-      j++;
+  //    //temporary[k] = strings[j];
+  //    k++;
+  //    j++;
 
-    }
+  //  }
 
-  }
+  //}
 
   
 
@@ -87,44 +85,45 @@ void merge(string_vector & strings, size_t start, size_t mid, size_t end) {
 void mergesort(string_vector & strings, size_t start, size_t end) {
   // TODO: implement this function, then delete this comment
 
-  if (strings.size() == 1) {
-    return;
-  }
-  else{
+  //if (strings.size() == 1) {
+  //  return;
+  //}
+  //else{
 
-    //allocate memory for both parts, for each recursion call
-    string_vector* b = new string_vector();
-    string_vector* c = new string_vector();
+  //  //allocate memory for both parts, for each recursion call
+  //  string_vector* b = new string_vector();
+  //  string_vector* c = new string_vector();
 
-    cout <<"first part from " << start << " to " <<  end / 2 << endl;
-    cout <<"2nd part from " << end / 2 + 1 << " to " <<  end << endl;
+  //  cout <<"first part from " << start << " to " <<  end / 2 << endl;
+  //  cout <<"2nd part from " << end / 2 + 1 << " to " <<  end << endl;
 
-    for ( int i = 0; i < end / 2 + 1; i++){
+  //  for ( int i = 0; i < end / 2 + 1; i++){
 
-      //copy first part of words into b vector
-      b->push_back(strings[i]);
+  //    //copy first part of words into b vector
+  //    b->push_back(strings[i]);
 
-    }
+  //  }
 
-    for ( int i = end / 2 + 1; i < end + 1; i++){
+  //  for ( int i = end / 2 + 1; i < end + 1; i++){
 
-      //copy 2nd part of the words into c vector
-      c->push_back(strings[i]);
-   
-    }
+  //    //copy 2nd part of the words into c vector
+  //    c->push_back(strings[i]);
+  // 
+  //  }
 
-    cout << b->at(0) << endl;
-    cout << c->at(0) << endl;    
+  //  cout << b->at(0) << endl;
+  //  cout << c->at(0) << endl;    
 
-    mergesort(*b,0,b->size()-1);
-    mergesort(*c,0,c->size()-1);
+  //  mergesort(*b,0,b->size()-1);
+  //  mergesort(*c,0,c->size()-1);
 
-    cout <<"Begin the merge process from here on" << endl;
-    //need to implement merge
+  //  cout <<"Begin the merge process from here on" << endl;
+  //  //need to implement merge
 
-    return;
-    
-  }
+  //  return;
+  //  
+  //}
+	return;
 }
 
 //-----------------------------------------------------------------------------
@@ -135,7 +134,23 @@ void mergesort(string_vector & strings, size_t start, size_t end) {
 //-----------------------------------------------------------------------------
 int hoare_partition(string_vector & strings, int start, int end) {
   // TODO: implement this function, then delete this comment
-  return 0;
+
+	int l = start, r = end;
+	std::string pivot = strings[start];
+
+	while (l < r) {
+
+		while (pivot < strings[r] && r > l) {
+			r--;
+		}
+		swap(strings[l], strings[r]);
+
+		while (pivot >= strings[l] && l < r) {
+			l++;
+		}
+		swap(strings[r], strings[l]);
+	}
+	return l;
 }
 
 //-----------------------------------------------------------------------------
@@ -146,13 +161,13 @@ int hoare_partition(string_vector & strings, int start, int end) {
 //-----------------------------------------------------------------------------
 void quicksort(string_vector & strings, int start, int end) {
 	//needs hoare_partition in order to work
-
-	/*if (start < end)
-	{
-		int split_point = hoare_partition(strings, start, end);
-		quicksort(strings, start, split_point - 1);
-		quicksort(strings, split_point + 1, end);
-	}*/
+	//std::string pivot = strings[start];
+	//if (start < end)
+	//{
+	//	int split_point = hoare_partition(strings, start, end);
+	//	quicksort(strings, start, split_point - 1);
+	//	quicksort(strings, split_point + 1, end);
+	//}
 
   return;
 }
