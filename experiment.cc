@@ -40,7 +40,6 @@ int main() {
   cout << "mergesort, "
        << "n=" << n << ", "
        << "elapsed time = " << elapsed << " seconds" << endl;
-
   
   //test quicksort
   quicksort(n_words2);

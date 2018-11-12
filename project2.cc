@@ -149,6 +149,7 @@ void quicksort(string_vector & strings, int start, int end) {
 		int split_point = hoare_partition(strings, start, end);
 		quicksort(strings, start, split_point - 1);
 		quicksort(strings, split_point + 1, end);
+    merge(strings,start,split_point,end);
 	}
 
 	//vector output
