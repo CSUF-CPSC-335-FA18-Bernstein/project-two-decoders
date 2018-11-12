@@ -40,6 +40,7 @@ void merge(string_vector & strings, size_t start, size_t mid, size_t end) {
 
   //setup our starting, middle point along with a temporary string vector to place
   //our strings as they are being sorted.
+
   int i = start;
 	int j = mid + 1;
 	string_vector temp;
@@ -144,13 +145,16 @@ int hoare_partition(string_vector & strings, int start, int end) {
 // parts, recursively calls itself on the two parts and then merges 
 // the two parts together using the merge() method.
 //-----------------------------------------------------------------------------
+
 void quicksort(string_vector & strings, int start, int end) {
-	if (start < end) {
+	
+  if (start < end) {
 		int split_point = hoare_partition(strings, start, end);
 		quicksort(strings, start, split_point - 1);
 		quicksort(strings, split_point + 1, end);
-    merge(strings,start,split_point,end);
 	}
+
+  return;
 
 	//vector output
 	//for (auto v : strings)
