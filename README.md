@@ -12,6 +12,6 @@ Group Members:
 
 Documents:
 
-  Analysis: https://docs.google.com/document/d/1yUYvdS2A11dIcLydLQxQ2IjSwVQxClxgGaa3jhr0EHw/edit?usp=sharing
+  Project Report: https://docs.google.com/document/d/1yUYvdS2A11dIcLydLQxQ2IjSwVQxClxgGaa3jhr0EHw/edit?usp=sharing
   
   Scatterplot: https://docs.google.com/spreadsheets/d/1WpNiP-qH93jHzRjuHi5aXK-H1aocRXESx_KrshMHXVo/edit?usp=sharing
