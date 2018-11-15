@@ -16,7 +16,7 @@ using namespace std;
 
 int main() {
 
-  int n[5] = {1000, 5000, 10000, 50000, 100000};
+  int n = 100000;
 
   string_vector all_words;
   if ( ! load_words(all_words, "words.txt") ) {
@@ -26,34 +26,29 @@ int main() {
   
 
   //test mergesort
-  for (int i = 0; i < 5; i++)
-  {
-	  string_vector n_words(all_words.begin(), all_words.begin() + n[i]);
-	  randomize_list(n_words);
+  for (int i = 0; i < 20; i++) {
+		  string_vector n_words(all_words.begin(), all_words.begin() + n);
+		  randomize_list(n_words);
 
-	  Timer timer;
-	  mergesort(n_words);
-	  double elapsed = timer.elapsed();
+		  Timer timer;
+		  mergesort(n_words);
+		  double elapsed = timer.elapsed();
 
-	  cout << "mergesort, "
-		   << "n=" << n[i] << ", "
-		   << "elapsed time = " << elapsed << " seconds" << endl;
+		  cout << elapsed << endl;
   }
+
   cout << endl;
   
   //test quicksort
-  for (int i = 0; i < 5; i++)
-  {
-	  string_vector n_words(all_words.begin(), all_words.begin() + n[i]);
-	  randomize_list(n_words);
+  for (int i = 0; i < 20; i++)  {
+		  string_vector n_words(all_words.begin(), all_words.begin() + n);
+		  randomize_list(n_words);
 
-	  Timer timer;
-	  quicksort(n_words);
-	  double elapsed = timer.elapsed();
+		  Timer timer;
+		  quicksort(n_words);
+		  double elapsed = timer.elapsed();
 
-	  cout << "quicksort, "
-		   << "n=" << n[i] << ", "
-		   << "elapsed time = " << elapsed << " seconds" << endl;
+		  cout << elapsed << endl;
   }
 
   return 0;
