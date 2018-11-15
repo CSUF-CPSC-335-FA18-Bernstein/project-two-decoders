@@ -37,58 +37,44 @@ void randomize_list(string_vector & strings) {
 
 //-----------------------------------------------------------------------------
 void merge(string_vector & strings, size_t start, size_t mid, size_t end) {
+	//setup our starting, middle point along with a temporary string vector to place
+	//our strings as they are being sorted.
 
-  //setup our starting, middle point along with a temporary string vector to place
-  //our strings as they are being sorted.
-
-  int i = start;
+	int i = start;
 	int j = mid + 1;
 	string_vector temp;
-	
-  if ( strings[mid] <= strings[mid + 1] && mid < end ){
-    
-    return;
-  }
-	
-	while ( i <= mid && j <= end ) {
-		
-    if (strings[i] > strings[j]) {
-			
-      temp.push_back(strings[j]);
-      j++;
 
+	if (strings[mid] <= strings[mid + 1] && mid < end) {
+		return;
+	}
+
+	while (i <= mid && j <= end) {
+		if (strings[i] > strings[j]) {
+			temp.push_back(strings[j]);
+			j++;
 		}
 		else {
-			
-      temp.push_back(strings[i]);
-      i++;
-
+			temp.push_back(strings[i]);
+			i++;
 		}
 	}
 
 	while (j <= end) {
-		
-    temp.push_back(strings[j]);
-    j++;
-
+		temp.push_back(strings[j]);
+		j++;
 	}
 
-  while (i <= mid) {
-
+	while (i <= mid) {
 		temp.push_back(strings[i]);
-    i++;
-
+		i++;
 	}
 
-  //place sorted temp strings back into strings
+	//place sorted temp strings back into strings
 	for (int i = 0; i < temp.size(); i++) {
-
 		strings[start + i] = temp[i];
-
 	}
 
 	return;
-  
 }
 
 //-----------------------------------------------------------------------------
@@ -98,11 +84,8 @@ void merge(string_vector & strings, size_t start, size_t mid, size_t end) {
 // the two parts together using the merge() method.
 //-----------------------------------------------------------------------------
 void mergesort(string_vector & strings, size_t start, size_t end) {
-  // TODO: implement this function, then delete this comment
 
-  
   if ( end > start ){
-
     int middle = ( start + end ) /2;
     mergesort(strings,start,middle);
     mergesort(strings,middle + 1,end);
@@ -119,23 +102,24 @@ void mergesort(string_vector & strings, size_t start, size_t end) {
 // It returns the index of the final position of the pivot value.
 //-----------------------------------------------------------------------------
 int hoare_partition(string_vector & strings, int start, int end) {
-  // TODO: implement this function, then delete this comment
 
 	int l = start, r = end;
 	std::string pivot = strings[start];
 
 	while (l < r) {
-
 		while (pivot < strings[r] && r > l) {
 			r--;
 		}
+
 		swap(strings[l], strings[r]);
 
 		while (pivot >= strings[l] && l < r) {
 			l++;
 		}
+
 		swap(strings[r], strings[l]);
 	}
+
 	return l;
 }
 
@@ -147,7 +131,7 @@ int hoare_partition(string_vector & strings, int start, int end) {
 //-----------------------------------------------------------------------------
 
 void quicksort(string_vector & strings, int start, int end) {
-	
+
   if (start < end) {
 		int split_point = hoare_partition(strings, start, end);
 		quicksort(strings, start, split_point - 1);
@@ -155,11 +139,6 @@ void quicksort(string_vector & strings, int start, int end) {
 	}
 
   return;
-
-	//vector output
-	//for (auto v : strings)
-	//	cout << v << " ";
-	//std::cout << "\n";
 }
 
 
